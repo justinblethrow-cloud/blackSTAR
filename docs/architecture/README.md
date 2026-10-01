@@ -60,7 +60,8 @@ the validator requires nonempty alt text.
 
 ## Rebuilding
 
-Install the pinned documentation dependencies and render:
+Use Node.js 22.13 or later, install the pinned documentation dependencies, and
+render:
 
 ```bash
 npm ci --prefix extras/docs
@@ -76,6 +77,12 @@ CI renders into a temporary directory and compares generated SVG content with
 the tracked exports. PDF files are convenience exports and are checked for
 presence and provenance, but not byte identity because Chromium embeds
 environment-dependent PDF metadata.
+
+Mermaid's layout and look are explicitly pinned to `dagre` and `classic` in
+`extras/docs/mermaid.config.json`. Renderer upgrades require regenerated SVG
+and PDF exports; Mermaid CLI 12 fits PDFs to the diagram by default.
+The documentation package overrides the parser's `lodash-es` pin with 4.18.1
+to address GHSA-r5fr-rjxr-66jc and GHSA-f23m-r3pf-42rh.
 
 ## Public and Internal Separation
 

@@ -68,8 +68,12 @@ def validate_figures(errors: list[str]) -> None:
         errors.append("figures.json: unsupported schema_version")
     if manifest.get("canonical_visibility") != "public":
         errors.append("figures.json: canonical visibility must be public")
-    if manifest.get("renderers", {}).get("mermaid_cli") != "11.16.0":
-        errors.append("figures.json: Mermaid CLI must remain pinned to 11.16.0")
+    package = json.loads((REPO_ROOT / "extras/docs/package.json").read_text(encoding="utf-8"))
+    renderer_version = package.get("devDependencies", {}).get("@mermaid-js/mermaid-cli", "")
+    if not re.fullmatch(r"\d+\.\d+\.\d+", renderer_version):
+        errors.append("package.json: Mermaid CLI must be pinned to an exact version")
+    if manifest.get("renderers", {}).get("mermaid_cli") != renderer_version:
+        errors.append("figures.json: Mermaid CLI version must match package.json")
 
     figures = manifest.get("figures", [])
     if len(figures) < 14:
