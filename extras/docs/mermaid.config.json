@@ -1,6 +1,8 @@
 {
   "deterministicIds": true,
   "deterministicIDSeed": "blackstar-architecture-v1",
+  "layout": "dagre",
+  "look": "classic",
   "fontFamily": "Arial, Helvetica, sans-serif",
   "flowchart": {
     "curve": "linear",

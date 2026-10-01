@@ -30,8 +30,16 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y g++ jq make python3-yaml samtools zlib1g-dev
 
+      - name: Set up documentation Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22.23.1"
+
       - name: Install architecture renderer
         run: npm ci --prefix extras/docs
+
+      - name: Audit architecture renderer dependencies
+        run: npm audit --prefix extras/docs --audit-level=high
 
       - name: Validate architecture atlas
         run: |

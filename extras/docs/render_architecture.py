@@ -96,8 +96,6 @@ def render_one(mmdc: Path, source: Path, output: Path) -> None:
         "white",
         "--quiet",
     ]
-    if output.suffix == ".pdf":
-        command.append("--pdfFit")
     subprocess.run(command, cwd=REPO_ROOT, check=True)
     if output.suffix == ".svg":
         add_svg_provenance(output, source_digest(source))

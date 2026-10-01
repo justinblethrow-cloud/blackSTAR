@@ -7,6 +7,10 @@ updates:
     open-pull-requests-limit: 5
     labels:
       - "type: dependencies"
+    groups:
+      codeql:
+        patterns:
+          - "github/codeql-action/*"
   - package-ecosystem: npm
     directory: /extras/docs
     schedule:
