@@ -81,8 +81,11 @@ environment-dependent PDF metadata.
 Mermaid's layout and look are explicitly pinned to `dagre` and `classic` in
 `extras/docs/mermaid.config.json`. Renderer upgrades require regenerated SVG
 and PDF exports; Mermaid CLI 12 fits PDFs to the diagram by default.
-The documentation package overrides the parser's `lodash-es` pin with 4.18.1
+The documentation package pins `lodash-es` to patched version 4.18.1
 to address GHSA-r5fr-rjxr-66jc and GHSA-f23m-r3pf-42rh.
+The renderer and its locked dependencies are audited in CI. Security updates
+must retain the audit gate and pass the same diagram reproduction check as
+other renderer changes; they do not change the aligner's runtime dependencies.
 
 ## Public and Internal Separation
 
