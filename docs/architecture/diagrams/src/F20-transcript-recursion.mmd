@@ -31,7 +31,9 @@ flowchart TB
     end
 
     SELECT --> REF
-    BEFORE -.->|same search tree and branch order| A06
+    INVARIANT["same search tree and<br/>branch order"]
+    BEFORE -.-> INVARIANT
+    INVARIANT -.-> A06
 
     subgraph RESULTS["Exact public evidence at 96 threads"]
         direction LR
@@ -54,7 +56,7 @@ flowchart TB
     classDef decision fill:#fef3c7,stroke:#a16207,color:#111827;
     classDef note fill:#ffffff,stroke:#6b7280,color:#374151,stroke-dasharray: 5 5;
     class HOT parent;
-    class SELECT note;
+    class SELECT,INVARIANT note;
     class VALUE,INC1,EXC1,TERM1 parent;
     class REF,INC2,EXC2,TERM2 candidate;
     class BRANCH decision;
